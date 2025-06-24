@@ -8,13 +8,19 @@ if (isset($_POST['update'])) {
     $gender = $_POST['Gender'];
     $email = $_POST['Email'];
     $phone = $_POST['PhoneNo'];
+    $course = $_POST['Course'];
+    $languages = isset($_POST['Languages']) ? implode(", ", $_POST['Languages']) : '';
 
-    $sql = "UPDATE registration SET FirstName='$fname', LastName='$lname', Gender='$gender', Email='$email', PhoneNo='$phone' WHERE id=$id";
+    $stmt = $conn->prepare("UPDATE registration SET FirstName = ?, LastName = ?, Gender = ?, Email = ?, PhoneNo = ?, Course = ?, Languages = ? WHERE id = ?");
+    $stmt->bind_param("sssssssi", $fname, $lname, $gender, $email, $phone, $course, $languages, $id);
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         header("Location: list.php");
+        exit;
     } else {
-        echo "Error updating record: " . $conn->error;
+        echo "Error updating record: " . $stmt->error;
     }
+
+    $stmt->close();
 }
 ?>

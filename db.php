@@ -1,3 +1,5 @@
+
+
 <?php
 $host = "localhost";
 $user = "root";
@@ -10,3 +12,4 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
+

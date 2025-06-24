@@ -9,7 +9,7 @@ $id = $_GET['id'];
 $sql = "DELETE FROM registration WHERE id = $id";
 mysqli_query($conn, $sql);
 
-// Renumber IDs
+
 mysqli_query($conn, "SET @num := 0");
 mysqli_query($conn, "UPDATE registration SET id = @num := @num + 1");
 mysqli_query($conn, "ALTER TABLE registration AUTO_INCREMENT = 1");

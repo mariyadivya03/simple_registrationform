@@ -8,9 +8,12 @@ if (isset($_POST['submit'])) {
     $email = $_POST['Email'];
     $pass = $_POST['Password'];
     $phone = $_POST['PhoneNo'];
+    $course = $_POST['Course'];
+    $languages = isset($_POST['Languages']) ? implode(", ", $_POST['Languages']) : '';
 
-    $stmt = $conn->prepare("INSERT INTO registration (FirstName, LastName, Gender, Email, Password, PhoneNo) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $fname, $lname, $gender, $email, $pass, $phone);
+    
+    $stmt = $conn->prepare("INSERT INTO registration (FirstName, LastName, Gender, Email, Password, PhoneNo, Course, Languages) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $fname, $lname, $gender, $email, $pass, $phone, $course, $languages);
 
     if ($stmt->execute()) {
         echo "Registered Successfully. <a href='list.php'>View List</a>";
