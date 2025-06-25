@@ -67,7 +67,7 @@
 <body>
     <div class="container">
         <h2>User Registration</h2>
-        <form action="connect.php" method="POST">
+        <form action="connect.php" method="POST" enctype="multipart/form-data">
 
             <label>First Name:</label>
             <input type="text" name="FirstName" required>
@@ -84,7 +84,9 @@
             <input type="email" name="Email" required>
 
             <label>Password:</label>
-            <input type="password" name="Password" required>
+            <input type="password" name="Password" required minlength="6"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                title="At least 1 number, 1 uppercase, 1 lowercase, and 6+ characters">
 
             <label>Phone Number:</label>
             <input type="text" name="PhoneNo" required>
@@ -102,6 +104,9 @@
             <input type="checkbox" name="Languages[]" value="Tamil"> Tamil<br>
             <input type="checkbox" name="Languages[]" value="English"> English<br>
             <input type="checkbox" name="Languages[]" value="Hindi"> Hindi<br><br>
+
+            <label>Upload Resume (PDF/DOC/DOCX):</label>
+            <input type="file" name="resume" accept=".pdf,.doc,.docx"><br><br>
 
             <input type="submit" name="submit" value="Register">
         </form>
