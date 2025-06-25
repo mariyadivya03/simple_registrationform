@@ -21,15 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         echo "Stored Hashed Password: " . $row['Password'] . "<br>";
 
         if (password_verify($password, $row['Password'])) {
-            echo "✅ Password matched. Redirecting to list.php...";
+            echo " Password matched. Redirecting to list.php...";
             $_SESSION['user'] = $row['Email'];
             header("refresh:2; url=list.php"); // Wait 2 seconds and redirect
             exit;
         } else {
-            echo "❌ password_verify() failed.<br>";
+            echo " password_verify() failed.<br>";
         }
     } else {
-        echo "❌ No user found with this email.";
+        echo " No user found with this email.";
     }
 
     $stmt->close();
